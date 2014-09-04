@@ -1,0 +1,18 @@
+Stephanie Snipes
+
+I have done more front-end than back-end work with web architecture. I've 
+mainly written in HTML and CSS, but I can hack together pieces of 
+Javascript and PHP. I'm hoping to become much better at that.
+
+My two usual browsers are Google Chrome (#1) and Firefox (#2). I really 
+like Google Chrome because of the Chrome Extensions that I can add, and 
+the browser's direct integration with my Google account. I know the latter 
+point can be debatable because of potential issues with tracking user 
+history, but it is convenient to have my sessions remembered with 
+different devices. I also really like the Inspect Element/Developer Tools 
+feature for Chrome as it makes it easy to experiment directly with the 
+code without touching the actual files. For Firefox, there was a cool 
+3D/tilt feature that allowed you to have a good look at the different 
+elements layered on the page. I found that useful sometimes in trying to 
+figure out z-indexes. In terms of memory management, Firefox also seems to 
+handle a greater number of tabs better for me and crashes less often.
