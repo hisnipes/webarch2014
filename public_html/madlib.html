@@ -27,8 +27,8 @@
 
 			<br/><br/>
 
-			<label>First name of a second person you know:
-				<input type="text" name="second-person">
+			<label>How old is this person?
+				<input type="text" name="person-age">
 			</label>
 
 			<p>What is the day like outside?</p>
@@ -99,7 +99,7 @@
 			function validate() {
 				var first_person = document.forms["madlib-input"]["first-person"].value;
 				var genders = document.getElementsByName("gender");
-				var second_person = document.forms["madlib-input"]["second-person"].value;
+				var person_age = document.forms["madlib-input"]["person-age"].value;
 				var weather = document.getElementsByName("weather");
 				var activities = document.getElementById("activity").value;
 				var animal = document.forms["madlib-input"]["animal"].value;
@@ -130,11 +130,18 @@
 					return false;
 				}
 
-				if (second_person == null || second_person == "") {
-					console.log("checking for second person's name");
-					alert("Please enter a second person's name!");
+				if (person_age == null || person_age == "") {
+					console.log("checking for person's age");
+					alert("Please enter an age!");
 					return false;
 				};
+
+				var numbers = /^[0-9]+$/;
+				console.log(person_age.match(numbers));
+				if (person_age.match(numbers) == null) {
+					alert("Please enter numbers for the age, please!");
+					return false;
+				}
 
 				wisChecked = false;
 				for (var i = 0; i < weather.length; i++) {
@@ -142,7 +149,6 @@
 						weatherval = weather[i].value;
 						console.log(weatherval);
 						wisChecked = true;
-						break;
 					}
 				}
 				if (wisChecked == false) {
@@ -179,7 +185,7 @@
 				}
 
 				var output = document.getElementById("madlib-output");
-				output.innerHTML = "<p>Welcome to my madlib! Today's weather is " + weatherval + ". The first person you know is " + first_person + " and the second person is " + second_person + ". " + first_person + " is " + genderval + " and together you enjoy " + activities + ". You possibly have a " + animal + " as a pet and you enjoy " + likethingsarr.join(" and ") + ".</p>";
+				output.innerHTML = "<p>Welcome to my madlib! Today's weather is " + weatherval + ". You have a friend named " + first_person + " who is " + person_age + " years old. " + first_person + " is " + genderval + " and together you enjoy " + activities + ". You possibly have a " + animal + " as a pet and you enjoy " + likethingsarr.join(" and ") + ".</p>";
 
 				return false;
 
