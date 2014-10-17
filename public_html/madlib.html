@@ -7,34 +7,196 @@
         <meta name="viewport" content="width=device-width">
     </head>
     <body>
-		<form id="madlib-input">
+		<form name="madlib-input" id="madlib-input">
 			<p>Please Input your answers below!</p>
-			<!-- inputs... -->
+
+			<label>First name of someone you know:
+				<input type="text" name="first-person">
+			</label>
+ 
+			<p>Is this person male or female?</p>
+			<label>
+				<input type="radio" name="gender" value="male">
+				Male
+			</label>
+			<br/>
+			<label>
+				<input type="radio" name="gender" value="female">
+				Female
+			</label>
+
+			<br/><br/>
+
+			<label>How old is this person?
+				<input type="text" name="person-age">
+			</label>
+
+			<p>What is the day like outside?</p>
+			<label>
+				<input type="radio" name="weather" value="bright and sunny">
+				Bright and Sunny
+			</label>
+			<br/>
+			<label>
+				<input type="radio" name="weather" value="cold and cloudy">
+				Cold and Cloudy
+			</label>
+
+			<br/><br/>
+
+			<label for="activity">Choose an activity:</label>
+			<select name="activity" id="activity">
+				<option value=""></option>
+				<option value="running">Running</option>
+				<option value="humming">Humming</option>
+				<option value="sailing">Sailing</option>
+			</select>
+
+			<br/><br/>
+
+			<label>
+				Think of an animal:
+				<input type="text" name="animal">
+			</label>
+
+			<p>Check the boxes of the things you like</p>
+			<label>
+				<input type="checkbox" name="likethings" value="pancakes">
+				Pancakes
+			</label>
+			<label>
+				<input type="checkbox" name="likethings" value="unicorns">
+				Unicorns
+			</label>
+			<br/>
+			<label>
+				<input type="checkbox" name="likethings" value="motorbikes">
+				Motorbikes
+			</label>
+				<label>
+				<input type="checkbox" name="likethings" value="umbrellas">
+				Umbrellas
+			</label>
+
+			<br/><br/>
+
+			<input type="submit" value="Send Data">
+
 		</form>
 		
+		<br/><br/>
 		<div id="madlib-output">
 		</div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<!-- Optionally include other scripts
         <script src="js/main.js"></script>
 		-->
 
         <!-- You may add Javascript functions below -->
         <script>
+
 			function validate() {
-				if ($("input:first").val() == "correct") {
-					$("#madlib-output").text("input: correct");
-				} else {
-					alert("Error!");
+				var first_person = document.forms["madlib-input"]["first-person"].value;
+				var genders = document.getElementsByName("gender");
+				var person_age = document.forms["madlib-input"]["person-age"].value;
+				var weather = document.getElementsByName("weather");
+				var activities = document.getElementById("activity").value;
+				var animal = document.forms["madlib-input"]["animal"].value;
+				var likethings = document.getElementsByName("likethings");
+
+				console.log("running validate");
+
+				var isChecked = false;
+
+				if (first_person == null || first_person == "") {
+					console.log("checking for first name");
+					alert("Please enter your first person's name!");
+					return false;
+				};
+
+				gisChecked = false;
+				for (var i = 0; i < genders.length; i++) {
+					if (genders[i].checked) {
+						genderval = genders[i].value;
+						console.log(genderval);
+						gisChecked = true;
+						break;
+					}
 				}
+				if (gisChecked == false) {
+					console.log("checking for gender checked");
+					alert("Please check a gender choice.");
+					return false;
+				}
+
+				if (person_age == null || person_age == "") {
+					console.log("checking for person's age");
+					alert("Please enter an age!");
+					return false;
+				};
+
+				var numbers = /^[0-9]+$/;
+				console.log(person_age.match(numbers));
+				if (person_age.match(numbers) == null) {
+					alert("Please enter numbers for the age, please!");
+					return false;
+				}
+
+				wisChecked = false;
+				for (var i = 0; i < weather.length; i++) {
+					if (weather[i].checked) {
+						weatherval = weather[i].value;
+						console.log(weatherval);
+						wisChecked = true;
+					}
+				}
+				if (wisChecked == false) {
+					console.log("checking for weather checked");
+					alert("Please check a weather choice.");
+					return false;
+				}
+
+				if (activities == "") {
+					console.log("checking for activities choice");
+					alert("Please choose an activity!");
+					return false;
+				};
+
+				if (animal == null || animal == "") {
+					console.log("checking for animal");
+					alert("Please enter an animal!");
+					return false;
+				};
+
+				var likethingsarr = new Array();
+				for (var i = 0; i < likethings.length; i++) {
+					if (likethings[i].checked) {
+						likethingsarr.push(likethings[i].value);
+						isChecked = true;
+						// break;
+					}
+				}
+				console.log(likethingsarr);
+				if (isChecked == false) {
+					console.log("checking for likethings checked");
+					alert("Please check at least one thing you like.");
+					return false;
+				}
+
+				var output = document.getElementById("madlib-output");
+				output.innerHTML = "<p>Welcome to my madlib! Today's weather is " + weatherval + ". You have a friend named " + first_person + " who is " + person_age + " years old. " + first_person + " is " + genderval + " and together you enjoy " + activities + ". You possibly have a " + animal + " as a pet and you enjoy " + likethingsarr.join(" and ") + ".</p>";
+
 				return false;
-			}
+
+			};
+
 
 			$(document).ready(function() {
+				console.log("document is ready!!");
 				$("#madlib-input").submit(validate);
-				console.log("ready!");
 			});
+
         </script>
     </body>
 </html>
