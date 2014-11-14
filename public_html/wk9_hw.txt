@@ -1,0 +1,132 @@
+QUESTION 1:
+1. How many links were added after 2014-10-14?
+
+11 rows were added after 2014-10-14.
+
+mysql > SELECT * FROM links WHERE created > '2014-10-14';
++-----------------------------------+-----------+-----------+------------+
+| long_url                          | short_url | hit_count | created    |
++-----------------------------------+-----------+-----------+------------+
+| http://baidu.com                  | 71bce     |        71 | 2014-10-22 |
+| http://disney.com                 | disne     |        51 | 2014-11-01 |
+| http://ebay.com                   | b0f7e     |        76 | 2014-10-17 |
+| http://gmail.com                  | gmail     |       101 | 2014-10-28 |
+| http://google.com                 | 891cb     |       137 | 2014-10-16 |
+| http://hao123.com                 | 9e898     |       181 | 2014-10-15 |
+| http://imgur.com/gallery/VskUDjn/ | meeoooww? |       420 | 2014-11-02 |
+| http://ischool.berkeley.edu       | abcd      |       101 | 2014-11-05 |
+| http://jong.me                    | hello     |     10001 | 2014-11-04 |
+| http://live.com                   | d2c05     |        67 | 2014-10-15 |
+| http://wordpress.com              | 8686e     |       142 | 2014-10-20 |
++-----------------------------------+-----------+-----------+------------+
+11 rows in set (0.00 sec)
+
+
+2. How many links were added before 2014-10-14 that have fewer than 40 hits?
+
+4 links were added before 2014-10-14 with fewer than 40 hits.
+
+SELECT * FROM links WHERE created < '2014-10-14' AND hit_count < '40';
+
++---------------------+-----------+-----------+------------+
+| long_url            | short_url | hit_count | created    |
++---------------------+-----------+-----------+------------+
+| http://blogspot.com | 04789     |        32 | 2014-09-14 |
+| http://facebook.com | 6733e     |        32 | 2014-08-30 |
+| http://google.de    | 5f379     |         7 | 2014-10-07 |
+| http://yahoo.co.jp  | 8b26f     |        39 | 2014-08-31 |
++---------------------+-----------+-----------+------------+
+4 rows in set (0.00 sec)
+
+
+QUESTION 2:
+
+1. Insert your own URL with a date before 2014-10-14 with greater than 40 hits.
+
+mysql> INSERT INTO links VALUES ('http://netflix.com' , 'movies', 2014, '2014-10-01');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from links;
++-----------------------------------------+------------+-----------+------------+
+| long_url                                | short_url  | hit_count | created    |
++-----------------------------------------+------------+-----------+------------+
+| http://163.com                          | 80650      |       114 | 2014-09-05 |
+| http://4chan.org                        | anon       |      9002 | 2014-10-10 |
+| http://amazon.com                       | b4556      |        97 | 2014-10-11 |
+| http://andrewhuang.me                   | andy       |        89 | 2014-10-11 |
+| http://anubhav.com                      | arg        |       100 | 2014-05-15 |
+| http://apple.com                        | appl       |        51 | 2014-01-01 |
+| http://baidu.com                        | 71bce      |        71 | 2014-10-22 |
+| http://berkeley.edu                     | cal        |    100002 | 1868-03-23 |
+| http://bing.com                         | 38c1c      |        65 | 2014-09-08 |
+| http://blogspot.com                     | 04789      |        32 | 2014-09-14 |
+| http://cmlasa.com                       |            |    701001 | 2014-07-01 |
+| http://dccomics.com                     | batman     |      9003 | 2014-09-09 |
+| http://disney.com                       | disne      |        51 | 2014-11-01 |
+| http://dudesinstartupshirts.tumblr.com/ | startup    |    100001 | 2014-10-13 |
+| http://ebay.com                         | b0f7e      |        76 | 2014-10-17 |
+| http://eecs.berkeley.edu/               | abcd       |        51 | 2014-10-01 |
+| http://facebook.com                     | 6733e      |        32 | 2014-08-30 |
+| http://gmail.com                        | gmail      |       101 | 2014-10-28 |
+| http://google.co.in                     | f1ab0      |       142 | 2014-09-14 |
+| http://google.com                       | 891cb      |       137 | 2014-10-16 |
+| http://google.de                        | 5f379      |         7 | 2014-10-07 |
+| http://hao123.com                       | 9e898      |       181 | 2014-10-15 |
+| http://imgur.com/gallery/VskUDjn/       | meeoooww?  |       420 | 2014-11-02 |
+| http://ischool.berkeley.edu             | abcd       |       101 | 2014-11-05 |
+| http://jong.me                          | hello      |     10001 | 2014-11-04 |
+| http://kristina.com                     | sep        |       124 | 2013-12-23 |
+| http://linkedin.com                     | d4234      |       194 | 2014-10-04 |
+| http://live.com                         | d2c05      |        67 | 2014-10-15 |
+| http://maribatilando.com                | 123abc     |        51 | 2014-09-10 |
+| http://mashable.com                     | mashq      |        42 | 2013-10-14 |
+| http://mercurynews.com                  | blomo      |       145 | 2001-10-14 |
+| http://myspace.com                      | myspace    |        42 | 2014-08-14 |
+| http://netflix.com                      | movies     |      2014 | 2014-10-01 |
+| http://nytimes.com                      | kevka      |       144 | 0000-00-00 |
+| http://qq.com                           | cab9d      |       196 | 2014-09-13 |
+| http://sina.com.cn                      | f3770      |       157 | 2014-10-12 |
+| http://taobao.com                       | dd29a      |        78 | 2014-09-26 |
+| http://tumblr.com                       | 27ca7      |       174 | 2014-09-28 |
+| http://twitter.com                      | 77532      |        61 | 2014-09-20 |
+| http://urbandictionary.com              | yo         |        46 | 2013-11-24 |
+| http://vk.com                           | 4cb96      |       127 | 2014-10-13 |
+| http://wikipedia.org                    | e249b      |       142 | 2014-08-30 |
+| http://wordpress.com                    | 8686e      |       142 | 2014-10-20 |
+| http://www.crunchyroll.com              | crunchy    |       421 | 2014-10-02 |
+| http://www.fastcodesign.com             | 1q23e      |        70 | 2014-10-09 |
+| http://www.google.com/settings/ads      | google_ads |       101 | 2014-10-12 |
+| http://www.nerp.com                     | nerp       |      6378 | 1984-04-09 |
+| http://www.techcrunch.com               | crunch     |      1999 | 2014-01-17 |
+| http://www.zombo.com/                   | anythin    |        91 | 2014-09-02 |
+| http://yahoo.co.jp                      | 8b26f      |        39 | 2014-08-31 |
+| http://yahoo.com                        | e773f      |        84 | 2014-09-29 |
+| http://yandex.ru                        | e9af1      |        78 | 2014-09-06 |
+| http://youtube.com                      | d32eb      |       117 | 2014-09-10 |
+| www.sufia.com                           | sufs       |       100 | 2014-06-02 |
++-----------------------------------------+------------+-----------+------------+
+54 rows in set (0.00 sec)
+
+2. Is it possible that someone querying the database at the same time could see your insert partially complete (eg. only see some fields filled in)? What database property is this related to?
+
+No. This is related to the database property, ACID. A person querying the database is an isolated action from you inserting a new row into the database (Isolation). Your row insert will need to be 100% complete and valid before the other user can see what data you've added (Atomicity).
+
+
+QUESTION 3:
+
+1. Increment the hit_count for only your new row. What is the new count?
+
+The hit count is 2015. I incremented the hit_count by setting it to "+1" to the original value.
+
+mysql> UPDATE links SET hit_count=hit_count+1 WHERE long_url='http://netflix.com';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from links where long_url='http://netflix.com';
++--------------------+-----------+-----------+------------+
+| long_url           | short_url | hit_count | created    |
++--------------------+-----------+-----------+------------+
+| http://netflix.com | movies    |      2015 | 2014-10-01 |
++--------------------+-----------+-----------+------------+
+1 row in set (0.00 sec)
+
