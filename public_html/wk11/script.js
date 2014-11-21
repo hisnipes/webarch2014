@@ -55,7 +55,7 @@ $(document).ready(function () {
         change();
     }
     else {
-        alert("Sorry, your current browser cannot detect your battery level. Try viewing this page in Mozilla Firefox, Chrome, or Opera on your desktop! It works there. :)");
+        alert("Sorry, your current browser cannot detect your battery level. Try viewing this page in Mozilla Firefox on your desktop! It works there. :)");
     }
     
 });
